@@ -1,19 +1,19 @@
 import * as grpc from '@grpc/grpc-js';
 import * as protoLoader from '@grpc/proto-loader';
 import { PackageDefinition } from '@grpc/proto-loader';
-import { ProtoGrpcType } from '@proto/employee';
+import { ProtoGrpcType } from '@proto/greeting';
 import path from 'path';
 
-const PROTO_FILE = '../proto/employee.proto';
+const PROTO_FILE = '../proto/greeting.proto';
 
-const PORT = 8082;
+const PORT = 9090;
 
 const packageDefinition: PackageDefinition = protoLoader.loadSync(path.resolve(__dirname, PROTO_FILE));
 
 const paymentGrpcObj: ProtoGrpcType = (grpc.loadPackageDefinition(packageDefinition) as unknown) as ProtoGrpcType;
 
 
-const client = new paymentGrpcObj.randomPackage.Random(
+const client = new paymentGrpcObj.com.example.javagrpc.GreetingService(
     `0.0.0.0:${PORT}`, grpc.credentials.createInsecure()
 )
 
@@ -30,7 +30,7 @@ client.waitForReady(deadline, (err) => {
 
 function onClientReady() {
 
-    client.PingPong({ message: "Ping" }, (err, response) => {
+    client.greeting({ message: "Ping" }, (err, response) => {
         if (err) {
             console.error(err)
             return

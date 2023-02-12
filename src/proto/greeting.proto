@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.example.javagrpc;
+
+service GreetingService {
+  rpc greeting(GreetingMessage) returns (GreetingResponse){}
+}
+
+message GreetingMessage  {
+  string message = 1;
+}
+
+message GreetingResponse {
+  string message = 1;
+}

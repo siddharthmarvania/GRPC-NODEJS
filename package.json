@@ -6,7 +6,8 @@
   "scripts": {
     "test": "start",
     "client": "NODE_ENV=local nodemon -r tsconfig-paths/register ./src/client/client.ts",
-    "server": "NODE_ENV=local nodemon -r tsconfig-paths/register ./src/server/server.ts"
+    "server": "NODE_ENV=local nodemon -r tsconfig-paths/register ./src/server/server.ts",
+    "proto": "yarn proto-loader-gen-types --grpcLib=@grpc/grpc-js --outDir=src/proto/ src/proto/*.proto"
   },
   "repository": {
     "type": "git",
